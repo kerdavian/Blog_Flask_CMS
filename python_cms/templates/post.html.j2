@@ -1,0 +1,14 @@
+{% extends 'base.html.j2' %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<a href="/post/delete/{{ post.id }}" class="btn tooltip tooltip-bottom" data-tooltip="delete post">Delete</a>
+  {% if post.id is not defined %}
+    <h1>Post not found</h1>
+  {% else %}
+  <h1>{{ post.title }}</h1>
+  <img src="/files/{{post.teaser_image}}" class="img-responsive article-image-inner" alt="">
+  {{ post.body|safe }}
+  {% endif %}
+{% endblock %}
+

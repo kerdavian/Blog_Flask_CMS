@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    {% block headsource %} {% endblock %}
+  </head>
+  <body>
+    <header class="navbar">
+      <section class="navbar-section">
+        <a href="{{ url_for('pages.index') }}" class="navbar-brand mr-2">Home</a>
+        <a href="{{ url_for('pages.about') }}" class="navbar-brand mr-2">About</a>
+      </section>
+      <section class="navbar-section">
+        {% if current_user.is_authenticated %}
+         <div class="chip user-menu">
+           <img class="avatar avatar-sm" src="{{ current_user.profile_pic }}" alt="">
+           {{ current_user.name }}
+           <div class="user-submenu">
+             <a href="{{ url_for('pages.create_post') }}">Create Post</a>
+             <a href="{{ url_for('auth.logout') }}">Log out</a>
+
+           </div>
+         </div>
+         {% else %}
+         <a href="{{ url_for('auth.login') }}" class="btn btn-link">Log In</a>
+         {% endif %}
+      </section>
+    </header>
+    <main>
+    {% block content %} {% endblock %}
+    </main>
+    {% block bodysource %} {% endblock %}
+  </body>
+</html>

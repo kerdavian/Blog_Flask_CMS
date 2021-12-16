@@ -1,0 +1,47 @@
+{% extends 'base.html.j2' %}
+
+#ez hívja meg a ckeditor kódját
+{% block headsource %}
+ {{ ckeditor.load() }}
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<h1>Create post</h1>
+  {% for message in get_flashed_messages() %}
+   <div class="toast toast-success">
+       <button class="btn btn-clear float-right"></button>
+         {{message}}
+   </div>
+   {% endfor %}
+
+  {% for field, errors in form.errors.items() %}
+    {% for error in errors %}
+      <div class="toast toast-error">
+          <button class="btn btn-clear float-right"></button>
+            {{error}}
+      </div>
+  {% endfor %}
+  {% endfor %}
+
+<form action="/add" method="POST" class="form-group" enctype="multipart/form-data">
+    {# protect against csrf https://portswigger.net/web-security/csrf/tokens #}
+    {{ form.csrf_token() }}
+    <label for="title"> {{ form.title.label }}</label>
+    {{ form.title(class="form-input", placeholder="title")}}
+    <label for="teaser_image"> {{ form.teaser_image.label }}</label>
+    {{ form.teaser_image(class="form-input")}}
+
+    <label for="body" class="form-label"> {{ form.body.label }}</label>
+    {{ form.body(class="form-input", placeholder="your article goes here", id='body')}}
+    {{ form.submit(class="btn btn-primary input-group-btn float-right", id="createPost")}}
+</form>
+
+{{ ckeditor.config(name='body') }}
+
+{% endblock %}
+
+{% block bodysource %}
+ <script src="{{url_for('static', filename="create_post.js")}}"></script>
+{% endblock %}

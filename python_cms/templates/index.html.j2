@@ -1,0 +1,26 @@
+{% extends 'base.html.j2' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+  {% if posts|length == 0 %}
+  <h1 class="no-posts">We have no posts to show</h1>
+  {% endif %}
+
+<div class="columns">
+  {% for post in posts %}
+    <div class="column col-6 col-md-12">
+      <div class="card article-card">
+        <div class="card-image">
+          <img src="/files/{{post.teaser_image}}" class="img-responsive article-image" alt="">
+        </div>
+        <div class="card-header">
+          <div class="card-title h5">{{ post.title }}</div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-primary" href="/post/{{ post.id }}">Read More</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

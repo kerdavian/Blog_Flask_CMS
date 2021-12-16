@@ -1,0 +1,9 @@
+venv
+__pycache__
+.mypy_cache
+.vim
+.flaskenv
+files_upload
+data.db
+.DS_Store
+node_modules

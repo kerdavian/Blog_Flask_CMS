@@ -1,0 +1,78 @@
+body {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+header {
+  padding: 20px;
+  background-color: #ebedff;
+}
+
+main {
+  margin-top: 40px;
+}
+
+.chip {
+  overflow: initial;
+}
+
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-submenu {
+  display: none;
+}
+
+.article-card {
+  margin-top: 10px;
+}
+
+.article-image {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.article-image-inner {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.user-menu:hover > .user-submenu {
+  position: absolute;
+  top: 30px;
+  top: 20px;
+  height: 90px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #d7edff;
+  border-radius: 20px;
+}
+
+.user-menu > .user-submenu a {
+  margin-top: 10px;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px;
+}
+
+#createPost {
+  margin-top: 20px;
+}
+
+.btn{
+  float: right;
+  background-color: rgb(37, 16, 158);
+  color: white;
+}
+
+
